@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Events Exercise</title>
+    <style>
+         
+    </style>
+    <script>
+        
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+        
+        function pickSecretLetter() {
+            const index = Math.floor(Math.random() * alphabet.length);
+            return alphabet[index];
+        }
+
+        
+        let secretLetter = pickSecretLetter();
+
+        
+        function handleKeyPress(event) {
+            const pressedKey = event.key.toLowerCase(); 
+           
+            if (pressedKey === secretLetter) {
+                 
+                const listItem = document.createElement('li');
+                listItem.textContent = 'SECRET KEY PRESSED';
+
+               
+                const eventList = document.getElementById('event-list');
+                eventList.appendChild(listItem);
+
+                
+                secretLetter = pickSecretLetter();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.addEventListener('keydown', handleKeyPress);
+        });
+    </script>
+</head>
+<body>
+    <h1>Keyboard Events Exercise</h1>
+    <ol id="event-list"></ol>
+</body>
+</html>
